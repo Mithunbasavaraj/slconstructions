@@ -183,6 +183,8 @@ class Profile(models.Model) :
 
    def __str__(self):
      return self.user.first_name
+   
+
     
 class Project(models.Model):
    # user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -236,7 +238,7 @@ class Attendance(models.Model):
             hours, remainder = divmod(total_seconds, 3600)
             minutes = remainder // 60
             return f"{hours:02}:{minutes:02}"
-        return " "
+        return False
    
    def __str__(self):
       return self.user.first_name

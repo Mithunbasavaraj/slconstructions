@@ -17,27 +17,28 @@
                                         {% endif %}
 									</span>
 									<div>
-										<h5 class="text-white mb-1">{{user.first_name}} {{user.last_name}}</h5>
+										<h5 class="text-white mb-1">{{post.user.first_name}} {{post.user.last_name}}</h5>
 										<div class="d-flex align-items-center">
                                             {% if post.role %}
                                             <p class="text-white fs-12 mb-0">{{post.role}}</p>
                                             {% endif %}
 										<span class="mx-1"><i class="ti ti-point-filled text-primary"></i></span>
-										<p class="fs-12">{{user.designation}}</p>
+										<p class="fs-12">{{post.user.designation}}</p>
 									
 									</div>
+									<a href="{% url 'base:worker_attendance_list' post.user.pk %}" class="btn btn-primary mt-3"> <i class="ti ti-eye"></i> Attendance</a>
 									</div>
 								</div>
-                                <a href="{% url 'base:update_profile' %}" class="btn btn-icon btn-sm text-white rounded-circle edit-top"><i class="ti ti-edit"></i></a>
+                                <a href="{% url 'base:admin_update_profile' post.pk post.user.pk %}" class="btn btn-icon btn-sm text-white rounded-circle edit-top"><i class="ti ti-edit"></i></a>
 							</div>
 							<div class="card-body">
 								<div class="mb-3">
 									<span class="d-block mb-1 fs-13">Phone Number</span>
-									<p class="text-gray-9">{{user.username}}</p>
+									<p class="text-gray-9">{{post.user.username}}</p>
 								</div>
 								<div class="mb-3">
 									<span class="d-block mb-1 fs-13">Email Address</span>
-									<p class="text-gray-9">{{user.email}}</p>
+									<p class="text-gray-9">{{post.user.email}}</p>
 								</div>
 								<div class="mb-3">
 									<span class="d-block mb-1 fs-13">Gender </span>
@@ -103,11 +104,11 @@
 								</div>
 								<div class="mb-3">
 									<span class="d-block mb-1 fs-13">Last Login</span>
-									<p class="text-gray-9">{{user.last_login}} </p>
+									<p class="text-gray-9">{{post.user.last_login}} </p>
 								</div>
 								<div>
 									<span class="d-block mb-1 fs-13">Joined on</span>
-									<p class="text-gray-9">{{user.date_joined}}</p>
+									<p class="text-gray-9">{{post.user.date_joined}}</p>
 								</div>
 							</div>
 						</div>

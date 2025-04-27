@@ -3,7 +3,6 @@
 {% load widget_tweaks %}   
 {% block content %}
 
-
 	<div class="content  ">
 					<div class="">
 						<div class="card">
@@ -36,7 +35,71 @@
 													</div>
 												</div>
 											</div>
-											
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Your Gender</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.gender  class="select" placeholder="Your Gender"  %}
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Your occupation</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.occupation  class="form-control" placeholder="Your Occupation"  %}
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Your Marital status</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.marital_status  class="select" placeholder="Your Marital status"  %}
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Your Age</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.age  class="form-control" placeholder="Your Age"  %}
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Your Nationality</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.nationality  class="form-control" placeholder="Your Nationality"  %}
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Your State</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.state  class="select" placeholder="Your State"  %}
+													</div>
+												</div>
+											</div>
+
+
+
+
+
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
@@ -57,6 +120,12 @@
 													</div>
 												</div>
 											</div>
+											
+										</div>
+									</div>
+									<div class="border-bottom mb-3">
+										<h6 class="mb-3">Bank Account Information</h6>
+										<div class="row">
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
@@ -64,6 +133,37 @@
 													</div>
 													<div class="col-md-8">
 														{% render_field form.bank_account  class="form-control" placeholder="Bank Account Number"  %}
+													</div>
+												</div>
+											</div>
+										
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Bank Account Holder Name</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.bank_account_name  class="form-control" placeholder="Bank Account Holder Name"  %}
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Bank Account Bank Name</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.bank_account_bank_name  class="form-control" placeholder="Bank Account Bank Name"  %}
+													</div>
+												</div>
+											</div>
+												<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Bank Account Branch </label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.bank_account_branch_name  class="form-control" placeholder="Bank Account Branch "  %}
 													</div>
 												</div>
 											</div>
@@ -77,6 +177,7 @@
 													</div>
 												</div>
 											</div>
+										
 										</div>
 									</div>
 									<div class="border-bottom mb-3">

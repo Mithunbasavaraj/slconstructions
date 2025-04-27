@@ -40,6 +40,9 @@
                         <a href="{% url 'base:in_stock_inventory_delete' posts.pk posts.project.id%}"
                         ><i class="ti ti-trash text-danger"></i
                             ></a>
+                             <a href="{% url 'base:in_stock_inventory_edit' posts.pk %}"
+                        ><i class="ti ti-edit text-danger"></i
+                            ></a>
                       {% endif %}
                     </div>
                   </td>

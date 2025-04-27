@@ -58,6 +58,12 @@ class Material_shiftingForm(forms.ModelForm):
 		fields =('__all__')
 		exclude = ('user',)
 
+class Material_shifting_editForm(forms.ModelForm):
+	class Meta:
+		model = Material_shifting
+		fields =('__all__')
+		exclude = ('user',)
+
 class project_pre_planForm(forms.ModelForm):
 	class Meta:
 		model = project_pre_plan
@@ -69,3 +75,5 @@ class project_plan_filesForm(forms.ModelForm):
 		model = project_plan_files
 		fields =('__all__')
 		exclude = ('user','project_pre_plan',)
+
+	

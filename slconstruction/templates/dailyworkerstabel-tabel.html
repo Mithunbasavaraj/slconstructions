@@ -15,6 +15,7 @@
                 <tr>
                   <th>Added By</th>
                   <th>Date </th>
+                  <th>Project </th>
                   <th>Number Of Workers</th>
                   <th>Work Status</th>
                   
@@ -28,19 +29,20 @@
                 <tr>
                   <td><h6 class="fw-medium">{{posts.user.first_name}} {{posts.user.last_name}}</h6></td>
                   <td><h6 class="fw-medium">{{posts.date}}</h6></td>
+                  <td><h6 class="fw-medium">{{posts.project.project_name}}</h6></td>
                   <td><h6 class="fw-medium">{{posts.no_of_workers}}</h6></td>
                   <td><h6 class="fw-medium">{{posts.project_work_status}}</h6></td>
                  
                   <td>
                     <div class="action-icon d-inline-flex">
-                      <a href="{% url 'base:inspection_detail' posts.pk %}" class="me-5"
+                      <a href="{% url 'base:daily_workers_detail' posts.pk %}" class="me-5"
                         ><i class="ti ti-eye text-success"></i
                       ></a>
                       {% if user.is_superuser %}
-                        <a href="{% url 'base:inspection_details_delete' posts.pk posts.project.id%}"
+                        <a href="{% url 'base:daily_workers_delete' posts.pk posts.project.id%}"
                         ><i class="ti ti-trash text-danger"></i
                             ></a>
-                            <a href="{% url 'base:inspection_details_edit' posts.pk %}"
+                            <a href="{% url 'base:daily_workers_edit' posts.pk %}"
                         ><i class="ti ti-edit text-danger"></i
                             ></a>
                             
