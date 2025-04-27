@@ -23,11 +23,11 @@
               </thead>
               <tbody>
                 {% for posts in post %}
-                <tr>
+              <tr>
                   <td><h6 class="fw-medium">{{posts.date}}</h6></td>
                   <td>
                     {% if posts.punch_in %}
-                    <h6 class="fw-medium">{{posts.punch_in}}</h6>
+                    <h6 class="badge  d-inline-flex align-items-center {% if  posts.punch_in|date:"H:i" <= "09:15"%}badge-success {% else %} badge-danger {% endif %} ">{{posts.punch_in}}</h6>
                     {% endif %}
                   </td>
                   <td>
@@ -42,12 +42,13 @@
                   </td>
                   <td>
                   {% if  posts.punch_out%}
-                    <h6 class="fw-medium">{{posts.punch_out}}</h6>
+                    <h6  class="badge  d-inline-flex align-items-center {% if  posts.punch_out|date:"H:i" <= "18:00"%}badge-danger {% else %} badge-success {% endif %} ">{{posts.punch_out}}</h6>
                     {% endif  %}
                   </td>
-                  <td>
-                    {% if posts.formatted_work_duration %}
-                    <h6 class="fw-medium">{{posts.formatted_work_duration}}</h6>
+                    <td>
+                    {% if posts.formatted_work_duration %} 
+                        <span class="badge  d-inline-flex align-items-center badge-info ">
+                          <i class="ti ti-clock-hour-11 me-1"></i> {{posts.formatted_work_duration}} </span>
                     {% endif %}
                   </td>
                   <td>
