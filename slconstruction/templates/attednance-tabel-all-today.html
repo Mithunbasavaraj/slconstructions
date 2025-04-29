@@ -45,7 +45,10 @@
               <tbody>
                 {% for posts in post %}
                 <tr>
-                  <td><h6 class="fw-medium">{{posts.date}}</h6></td>
+                  <td><h6 class="fw-medium">
+                     <a href="{% url 'base:attendance_details' posts.pk %}">
+                    {{posts.date}}</h6></a>
+                  </td>
                   <td><a href="{% url 'base:admin_profile' posts.user.pk %}"  class="fw-medium text-success">{{posts.user.first_name}} {{posts.user.last_name}}</a></td>
                   <td><h6 class="fw-medium">{{posts.user.username}}</h6></td>
                  

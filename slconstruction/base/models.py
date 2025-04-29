@@ -347,3 +347,41 @@ class project_plan_files(models.Model):
    def __str__(self):
        return self.file_name
 
+#group of bill for who
+#multiple files for upload
+#bill generate
+#bill items
+
+class Client(models.Model):
+    name = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    # other client details
+    def __str__(self):
+       return self.name
+    
+class bill_files(models.Model):
+   file = models.FileField(upload_to='uploads/')
+   file_name=models.CharField(max_length=255, default="", blank=True)
+   Client = models.ForeignKey(Client, on_delete=models.CASCADE)
+   date = models.DateTimeField(auto_now_add=True, blank=True)
+
+   def __str__(self):
+       return self.file_name
+   
+class Invoice(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    invoice_number = models.CharField(max_length=50, unique=True)
+    date_issued = models.DateField(auto_now_add=True)
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    # other invoice details
+    def __str__(self):
+       return self.date_issued
+
+class InvoiceItem(models.Model):
+    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+    description = models.CharField(max_length=200)
+    quantity = models.IntegerField()
+    unit_price = models.DecimalField(max_digits=8, decimal_places=2)
+    # other item details
+    def __str__(self):
+       return self.quantity

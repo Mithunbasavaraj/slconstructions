@@ -65,5 +65,6 @@ urlpatterns = [
     path("worker_attendance_list/<int:pk>",views.worker_attendance_list, name="worker_attendance_list"),
     path("attendance_details/<int:pk>",views.attendance_details, name="attendance_details"),
     path("admin_profile/<int:pk>",views.admin_profile, name="admin_profile"),
+    path("bills/",views.bills, name="bills"),
   
 ]

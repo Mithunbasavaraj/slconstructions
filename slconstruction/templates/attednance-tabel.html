@@ -24,7 +24,8 @@
               <tbody>
                 {% for posts in post %}
               <tr>
-                  <td><h6 class="fw-medium">{{posts.date}}</h6></td>
+                  <td><h6 class="fw-medium">  <a href="{% url 'base:attendance_details' posts.pk %}">
+                    {{posts.date}}</h6></a></h6></td>
                   <td>
                     {% if posts.punch_in %}
                     <h6 class="badge  d-inline-flex align-items-center {% if  posts.punch_in|date:"H:i" <= "09:15"%}badge-success {% else %} badge-danger {% endif %} ">{{posts.punch_in}}</h6>

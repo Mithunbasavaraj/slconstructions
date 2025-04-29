@@ -620,10 +620,12 @@ def admin_update_profile(request,pk,u):
         return redirect('base:admin_profile', pk=u)
     return render(request, "edit-profile.html",{"form":form,})
 
+#bills
+
+@login_required
+def bills(request):
+  pass
 
 
 
 
-
-
-# colour in table
