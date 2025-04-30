@@ -5,9 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterUserForm,ProfileForm,ProjectForm,Add_inventoryForm,Inventory_useForm,stocks_in_InventoryForm,Project_daily_work_detailsForm,Project_work_inspection_detailsForm,Material_shiftingForm,project_pre_planForm,project_plan_filesForm,Material_shifting_editForm
 from django.contrib import messages
 from .models import Attendance,Profile,Project,Inventory,Inventory_use,stocks_in_Inventory,Project_daily_work_details,Project_work_inspection_details,Material_shifting,project_pre_plan,project_plan_files,User
-from django.utils import timezone
 from datetime import date
-from django.shortcuts import get_object_or_404
 
 def home(request):
     return render(request, "index.html",)
@@ -15,6 +13,7 @@ def home(request):
 @login_required
 def as_view(request):
     logout(request)
+    messages.success(request, "Logout Success")
     return redirect("base:login")
 
 @login_required
@@ -25,6 +24,7 @@ def register(request):
    var = form.save()
    var.save()
    Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
 #    return redirect("base:login")
  else:
   form = RegisterUserForm()
