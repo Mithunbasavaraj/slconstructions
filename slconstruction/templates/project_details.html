@@ -2,20 +2,6 @@
 {% load static %}
 {% load widget_tweaks %}   
 {% block content %}
-{% comment %} 
-
-admin
-
-edit project
-delete project 
-view attendance 
-
-
-# punch in 
-# punch out 
-# lunch start 
-# lunch end 
-{% endcomment %}
 
 <!-- Welcome Wrap -->
  <div class="content">
@@ -35,7 +21,7 @@ view attendance
 						</div>
                         {% if user.designation != "Worker" %}
                         <div class="d-flex align-items-center flex-wrap mb-1">
-                        {% if user.designation == "Department Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer" %}
+                        {% if user.designation == "Department Engineer" or user.designation == "Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer" %}
 
               <a href="{% url 'base:inspection' post.pk %}" class="btn btn-primary btn-md me-2 mb-2" ><i class="ti ti-square-rounded-plus me-1"></i>Add Inspection Details</a>
               {% endif %}
@@ -284,7 +270,7 @@ view attendance
 							</div>
 						</div>
 					</div>
-          {% if user.designation == "Department Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer"  %}
+          {% if user.designation == "Department Engineer" or user.designation == "Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer"  %}
 					<div class="col-xl-3 col-md-6">
 						<div class="card position-relative">
 							<div class="card-body">

@@ -75,10 +75,10 @@
 			<div class="main-header">
 
 				<div class="header-left">
-					<a href="" class="logo">
+					<a href="{% url 'base:dashboard' %}" class="logo">
 						<img src="{% static "img/logo.png" %}" alt="Logo">
 					</a>
-					<a href="" class="dark-logo">
+					<a href="{% url 'base:dashboard' %}" class="dark-logo">
 						<img src="{% static "img/logo.png" %}" alt="Logo">
 					</a>
 				</div>
@@ -113,7 +113,7 @@
 							</div>
 							
 							<div class="dropdown profile-dropdown">
-								<a href="javascript:void(0);" class="dropdown-toggle d-flex align-items-center"
+								<a href="{% url 'base:dashboard' %}" class="dropdown-toggle d-flex align-items-center"
 									data-bs-toggle="dropdown">
 									<span class="avatar avatar-sm online">
 										<img src="{% static "img/user.jpg" %}"  alt="Img"
@@ -217,7 +217,7 @@
 							<li><a href="{% url 'base:project_create' %}"><i class="ti ti-calendar-event"></i><span>Create New Project</span></a></li>
 							<li><a href="{% url 'base:Project_work_inspection_details_all' %}"><i class="ti ti-calendar-event"></i><span>Inspection</span></a></li>
 							<li><a href="{% url 'base:register' %}"><i class="ti ti-calendar-event"></i><span>Add Staffs</span></a></li>
-							<li><a href="{% url 'base:bills' %}"><i class="ti ti-calendar-event"></i><span>Bills</span></a></li>
+							<li><a href="{% url 'base:dashboard' %}"><i class="ti ti-calendar-event"></i><span>Bills</span></a></li>
 							{% endif %}
 							
 							</ul>
