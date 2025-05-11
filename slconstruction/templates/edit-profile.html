@@ -10,7 +10,7 @@
 								<div class="border-bottom mb-3 pb-3">
 									<h4>Details</h4>
 								</div>
-								<form method="POST" enctype="multipart/form-data">
+								<form method="POST" enctype="multipart/form-data" onsubmit="openLoader()">
 									{% csrf_token %}
 									<div class="border-bottom mb-3">
 										
@@ -18,7 +18,7 @@
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
-														<label class="form-label mb-md-0">Your Photo</label>
+														<label class="form-label mb-md-0">Photo</label>
 													</div>
 													<div class="col-md-8">
 														{% render_field form.image class="form-control image-sign" %}
@@ -28,70 +28,99 @@
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
-														<label class="form-label mb-md-0">Your Role</label>
+														<label class="form-label mb-md-0">Role</label>
 													</div>
+
 													<div class="col-md-8">
-														{% render_field form.role  class="select" placeholder="Your Role"  %}
+														{% render_field form.role list="role-list"  class="form-control" placeholder="Role"  %}
+														<datalist id="role-list">
+															<option value="Gare Workers">
+															<option value="Male Helper">
+															<option value="Female Helper">
+															<option value="Paint Workers">
+															<option value="Electrical Workers">
+															<option value="Plumbing Workers">
+															<option value="Granite Workers">
+															<option value="Tile Workers">	
+															<option value="Welding Workers">
+															<option value="Aluminum Window Workers">
+															<option value="ACC Workers">
+															<option value="Stone Cladding Workers">
+															<option value="Batch Workers">	
+															<option value="Structural Workers">
+															<option value="Borewell Workers">
+															<option value="Street Light Workers">
+															<option value="UPS Workers">
+															<option value="CC Camera Workers">
+															<option value="LED Name Board Workers">	
+															<option value="Retail Shop">
+															<option value="wholesale Shop">
+															<option value="Distributor">
+															<option value="Factory">
+															
+															
+															
+														</datalist>
 													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
-														<label class="form-label mb-md-0">Your Gender</label>
+														<label class="form-label mb-md-0">Gender</label>
 													</div>
 													<div class="col-md-8">
-														{% render_field form.gender  class="select" placeholder="Your Gender"  %}
+														{% render_field form.gender  class="select" placeholder="Gender"  %}
 													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
-														<label class="form-label mb-md-0">Your occupation</label>
+														<label class="form-label mb-md-0">occupation</label>
 													</div>
 													<div class="col-md-8">
-														{% render_field form.occupation  class="form-control" placeholder="Your Occupation"  %}
+														{% render_field form.occupation  class="form-control" placeholder="Occupation"  %}
 													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
-														<label class="form-label mb-md-0">Your Marital status</label>
+														<label class="form-label mb-md-0">Marital status</label>
 													</div>
 													<div class="col-md-8">
-														{% render_field form.marital_status  class="select" placeholder="Your Marital status"  %}
+														{% render_field form.marital_status  class="select" placeholder="Marital status"  %}
 													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
-														<label class="form-label mb-md-0">Your Age</label>
+														<label class="form-label mb-md-0">Age</label>
 													</div>
 													<div class="col-md-8">
-														{% render_field form.age  class="form-control" placeholder="Your Age"  %}
+														{% render_field form.age  class="form-control" placeholder="Age"  %}
 													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
-														<label class="form-label mb-md-0">Your Nationality</label>
+														<label class="form-label mb-md-0">Nationality</label>
 													</div>
 													<div class="col-md-8">
-														{% render_field form.nationality  class="form-control" placeholder="Your Nationality"  %}
+														{% render_field form.nationality  class="form-control" placeholder="Nationality"  %}
 													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="row align-items-center mb-3">
 													<div class="col-md-4">
-														<label class="form-label mb-md-0">Your State</label>
+														<label class="form-label mb-md-0">State</label>
 													</div>
 													<div class="col-md-8">
-														{% render_field form.state  class="select" placeholder="Your State"  %}
+														{% render_field form.state  class="select" placeholder="State"  %}
 													</div>
 												</div>
 											</div>
@@ -120,7 +149,66 @@
 													</div>
 												</div>
 											</div>
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Aadhar Photo</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.aadhar_image class="form-control image-sign" %}
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Pan Photo</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.pan_image class="form-control image-sign" %}
+													</div>
+												</div>
+											</div>
 											
+										</div>
+									</div>
+									<div class="border-bottom mb-3">
+										<h6 class="mb-3">Shop Information</h6>
+										<div class="row">
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Shop Type</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.shop_type  class="form-control" placeholder="Shop Type" list="options" %}
+														<datalist id="options">
+															<option value="Retail Shop">
+															<option value="Wholesale Shop">
+															<option value="Distributor">
+															<option value="Factory">
+															
+														</datalist>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="row align-items-center mb-3">
+													<div class="col-md-4">
+														<label class="form-label mb-md-0">Shop Photo</label>
+													</div>
+													<div class="col-md-8">
+														{% render_field form.shop_image class="form-control image-sign" %}
+													</div>
+												</div>
+											</div>
+									
+													
+										
+											
+											
+											
+										
 										</div>
 									</div>
 									<div class="border-bottom mb-3">

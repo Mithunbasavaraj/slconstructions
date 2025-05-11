@@ -5,6 +5,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
+
+
 designation_choice = (
    ("Engineer", "Engineer"),
    ("Department Engineer", "Department Engineer"),
@@ -13,8 +15,19 @@ designation_choice = (
    ("Site Worker Writer", "Site Worker Writer"),
    ("Mestri", "Mestri"),
    ("Worker", "Worker"),
-
+   ("Supplier", "Supplier"),
+   ("Founder", "Founder"),
+   ("Owner", "Owner"),
+   ("Chairman", "Chairman"),
+   ("CEO", "CEO"),
+   ("Partner", "Partner"),
+   ("Investor", "Investor"),
+   ("Shop Owner", "Shop Owner"),
+  
 )
+
+
+
 worker_choice = (
 ("Gare Workers","Gare Workers"),
 ("Male Helper","Male Helper"),
@@ -35,9 +48,13 @@ worker_choice = (
 ("UPS Workers","UPS Workers"),
 ("CC Camera Workers","CC Camera Workers"),
 ("LED Name Board Workers","LED Name Board Workers"),
-
+("Retail Shop", "Retail Shop"),
+("wholesale Shop", "wholesale Shop"),
+("Distributor", "Distributor"),
+("Factory", "Factory"),
 
 )
+
 product_choice = (
 ("M Sand", "M Sand"),
 ("P Sand", "P Sand"),
@@ -160,7 +177,7 @@ class User(AbstractUser):
    designation = models.CharField(max_length = 20, choices = designation_choice, null=True, blank=True)
 
    def __str__(self):
-      return self.email
+      return self.username
    
 class Profile(models.Model) :
    user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -172,14 +189,22 @@ class Profile(models.Model) :
    age=models.IntegerField( default=0, blank=True)
    nationality=models.CharField(max_length=55, default="", blank=True)
    state=models.CharField(max_length=155,choices = state_choice, default="", blank=True)
+   email=models.CharField(max_length=55, default="", blank=True)
+   phone=models.CharField(max_length=55, default="", blank=True)
    aadhar=models.CharField(max_length=55, default="", blank=True)
    pan=models.CharField(max_length=55, default="", blank=True)
+   pan_image=models.ImageField(upload_to='profile/' ,blank=True,)
+   aadhar_image=models.ImageField(upload_to='profile/' ,blank=True,)
+   shop_type=models.CharField(max_length=255, default="", blank=True)
+   shop_image=models.ImageField(upload_to='profile/' ,blank=True,)
    bank_account=models.CharField(max_length=55, default="", blank=True)
    bank_account_name=models.CharField(max_length=155, default="", blank=True)
    bank_account_bank_name=models.CharField(max_length=155, default="", blank=True)
    bank_account_branch_name=models.CharField(max_length=155, default="", blank=True)
    ifsc_code=models.CharField(max_length=55, default="", blank=True)
-   role = models.CharField(max_length = 135, choices = worker_choice, null=True, blank=True)
+   role = models.CharField(max_length = 135, null=True, blank=True) 
+   others=models.CharField(max_length=255, default="", blank=True)
+   #add
 
    def __str__(self):
      return self.user.first_name
@@ -197,12 +222,17 @@ class Project(models.Model):
     
 class Attendance(models.Model):
    user = models.ForeignKey(User, on_delete=models.CASCADE)
-   project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
+   
+   project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE , related_name="project_attendance")
+   project_lunch_start= models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE , related_name="lunch_start")
+   project_lunch_end= models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE , related_name="lunch_end")
+   project_punch_out= models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE , related_name="punch_out")
    date = models.DateField(default=timezone.now)
    punch_in = models.TimeField(null=True, blank=True)
    lunch_start = models.TimeField(null=True, blank=True)
    lunch_end = models.TimeField(null=True, blank=True)
    punch_out = models.TimeField(null=True, blank=True)
+   #edit
    punch_in_photo = models.ImageField(upload_to='attendance/' ,blank=True,)
    punch_out_photo= models.ImageField(upload_to='attendance/' ,blank=True,)
    lunch_in_photo= models.ImageField(upload_to='attendance/' ,blank=True,)
@@ -243,25 +273,38 @@ class Attendance(models.Model):
    def __str__(self):
       return self.user.first_name
   
+  #edit
 class Inventory(models.Model):
    user = models.ForeignKey(User, on_delete=models.CASCADE)
    project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
-   name=models.CharField(max_length=255, choices=product_choice,default="", blank=True)
+   name=models.CharField(max_length=255, default="", blank=True)
    qty=models.CharField(max_length=25, default="", blank=True)
    price=models.CharField(max_length=25, default="", blank=True)
    image=models.ImageField(upload_to='inventory/' ,blank=True,)
+   image1=models.ImageField(upload_to='inventory/' ,blank=True,)
+   image2=models.ImageField(upload_to='inventory/' ,blank=True,)
+   image3=models.ImageField(upload_to='inventory/' ,blank=True,)
    invoice_image=models.ImageField(upload_to='inventory/' ,blank=True,)
+   invoice_image1=models.ImageField(upload_to='inventory/' ,blank=True,)
+   invoice_image2=models.ImageField(upload_to='inventory/' ,blank=True,)
+   invoice_image3=models.ImageField(upload_to='inventory/' ,blank=True,)
    date = models.DateTimeField(auto_now_add=True, blank=True)
    lon=models.CharField(max_length=255, default="", blank=True)
    lat=models.CharField(max_length=255, default="", blank=True)
+   material_taken_name=models.CharField(max_length=255, default="", blank=True)
+   material_taken_phone=models.CharField(max_length=55, default="", blank=True)
+   shop_name=models.CharField(max_length=255, default="", blank=True)
+   shop_image=models.ImageField(upload_to='inventory/' ,blank=True,)
+   
 
    def __str__(self):
         return self.name
 
+#edit
 class stocks_in_Inventory(models.Model):
    user = models.ForeignKey(User, on_delete=models.CASCADE)
    project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
-   name=models.CharField(max_length=255, choices=product_choice,default="", blank=True)
+   name=models.CharField(max_length=255,default="", blank=True) #
    qty=models.CharField(max_length=25, default="", blank=True)
    price=models.CharField(max_length=25, default="", blank=True)
    image=models.ImageField(upload_to='inventory/' ,blank=True,)
@@ -275,7 +318,7 @@ class stocks_in_Inventory(models.Model):
 class Inventory_use(models.Model):
    user = models.ForeignKey(User, on_delete=models.CASCADE)
    project = models.ForeignKey(Project, blank=True, null=True, on_delete=models.CASCADE)
-   name=models.CharField(max_length=255, choices=product_choice,default="", blank=True)
+   name=models.CharField(max_length=255, default="", blank=True) #
    qty=models.CharField(max_length=25, default="", blank=True)
    image=models.ImageField(upload_to='inventory/' ,blank=True,)
    date = models.DateTimeField(auto_now_add=True, blank=True)
@@ -317,14 +360,36 @@ class Material_shifting(models.Model):
    user = models.ForeignKey(User, on_delete=models.CASCADE)
    project = models.ForeignKey(Project,  blank=True, null=True, on_delete=models.CASCADE, related_name="from_project")
    to_project = models.ForeignKey(Project,  blank=True, null=True, on_delete=models.CASCADE, related_name="to_project")
-   vehicle= models.CharField(max_length=255, choices=vehicle_choice,default="", blank=True)
+   vehicle= models.CharField(max_length=255,default="", blank=True) #
    image=models.ImageField(upload_to='uploads/' ,blank=True,)
-   Material_name=models.CharField(max_length=225,choices=Material_name_choice, default="", blank=True,)
+   Material_name=models.CharField(max_length=225, default="", blank=True,) #
    lon=models.CharField(max_length=255, default="", blank=True)
    lat=models.CharField(max_length=255, default="", blank=True)
 
    def __str__(self):
        return self.user.first_name
+   
+#made
+class Material_shifting_received(models.Model):
+   date = models.DateTimeField(auto_now_add=True, blank=True)
+   user = models.ForeignKey(User, on_delete=models.CASCADE)
+   project = models.ForeignKey(Project,  blank=True, null=True, on_delete=models.CASCADE, )
+   image=models.ImageField(upload_to='uploads/' ,blank=True,)
+   
+   Material_name=models.CharField(max_length=225, default="", blank=True,) #
+   lon=models.CharField(max_length=255, default="", blank=True)
+   lat=models.CharField(max_length=255, default="", blank=True)
+
+   def __str__(self):
+       return self.user.first_name
+   
+# add investor to project
+class Project_investor(models.Model):
+   user = models.ForeignKey(User, on_delete=models.CASCADE)
+   project = models.ForeignKey(Project,  blank=True, null=True, on_delete=models.CASCADE)
+   def __str__(self):
+       return self.user.first_name
+   
 
 
 class project_pre_plan(models.Model):
@@ -352,36 +417,36 @@ class project_plan_files(models.Model):
 #bill generate
 #bill items
 
-class Client(models.Model):
-    name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=100)
-    # other client details
-    def __str__(self):
-       return self.name
+# class Client(models.Model):
+#     name = models.CharField(max_length=100)
+#     phone = models.CharField(max_length=100)
+#     # other client details
+#     def __str__(self):
+#        return self.name
     
-class bill_files(models.Model):
-   file = models.FileField(upload_to='uploads/')
-   file_name=models.CharField(max_length=255, default="", blank=True)
-   Client = models.ForeignKey(Client, on_delete=models.CASCADE)
-   date = models.DateTimeField(auto_now_add=True, blank=True)
+# class bill_files(models.Model):
+#    file = models.FileField(upload_to='uploads/')
+#    file_name=models.CharField(max_length=255, default="", blank=True)
+#    Client = models.ForeignKey(Client, on_delete=models.CASCADE)
+#    date = models.DateTimeField(auto_now_add=True, blank=True)
 
-   def __str__(self):
-       return self.file_name
+#    def __str__(self):
+#        return self.file_name
    
-class Invoice(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    invoice_number = models.CharField(max_length=50, unique=True)
-    date_issued = models.DateField(auto_now_add=True)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    # other invoice details
-    def __str__(self):
-       return self.date_issued
+# class Invoice(models.Model):
+#     client = models.ForeignKey(Client, on_delete=models.CASCADE)
+#     invoice_number = models.CharField(max_length=50, unique=True)
+#     date_issued = models.DateField(auto_now_add=True)
+#     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
+#     # other invoice details
+#     def __str__(self):
+#        return self.date_issued
 
-class InvoiceItem(models.Model):
-    invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
-    description = models.CharField(max_length=200)
-    quantity = models.IntegerField()
-    unit_price = models.DecimalField(max_digits=8, decimal_places=2)
-    # other item details
-    def __str__(self):
-       return self.quantity
+# class InvoiceItem(models.Model):
+#     invoice = models.ForeignKey(Invoice, on_delete=models.CASCADE)
+#     description = models.CharField(max_length=200)
+#     quantity = models.IntegerField()
+#     unit_price = models.DecimalField(max_digits=8, decimal_places=2)
+#     # other item details
+#     def __str__(self):
+#        return self.quantity

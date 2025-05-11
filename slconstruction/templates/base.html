@@ -207,16 +207,36 @@
 							<li><a href="{% url 'base:project_plan' %}"><i class="ti ti-calendar-event"></i><span>Create Pre Project Plan</span></a></li>
 							<li><a href="{% url 'base:project_plan_list' %}"><i class="ti ti-calendar-event"></i><span>View Pre Project Plan</span></a></li>
 							<li><a href="{% url 'base:material_shifting' %}"><i class="ti ti-calendar-event"></i><span>Material Shifting</span></a></li>
-							<li><a href="{% url 'base:material_shifting_list' %}"><i class="ti ti-calendar-event"></i><span>Material Shifting Details</span></a></li>
-							<li><a href="{% url 'base:add_inventory_all' %}"><i class="ti ti-calendar-event"></i><span>Suppler Inventory</span></a></li>
-							<li><a href="{% url 'base:used_inventory_all' %}"><i class="ti ti-calendar-event"></i><span>Used Inventory</span></a></li>
-							<li><a href="{% url 'base:in_stock_inventory_all' %}"><i class="ti ti-calendar-event"></i><span>In stock Inventory</span></a></li>
-							<li><a href="{% url 'base:daily_workers_all' %}"><i class="ti ti-calendar-event"></i><span>Daily Workers</span></a></li>
+							<li><a href="{% url 'base:material_shifting_received_list_all' %}"><i class="ti ti-calendar-event"></i><span>Material Shifting Received</span></a></li>
 							{% endif %}
 							{% if  user.is_superuser %}
+							<li><a href="{% url 'base:material_shifting_list' %}"><i class="ti ti-calendar-event"></i><span>Material Shifting Details</span></a></li>
+							<li><a href="{% url 'base:add_inventory_all' %}"><i class="ti ti-calendar-event"></i><span>Suppler Stock</span></a></li>
+							<li><a href="{% url 'base:used_inventory_all' %}"><i class="ti ti-calendar-event"></i><span>Used Stock</span></a></li>
+							<li><a href="{% url 'base:in_stock_inventory_all' %}"><i class="ti ti-calendar-event"></i><span>In stock Inventory</span></a></li>
+							<li><a href="{% url 'base:daily_workers_all' %}"><i class="ti ti-calendar-event"></i><span>Daily Workers</span></a></li>
+							<li><a href="{% url 'base:list_of_investor' %}"><i class="ti ti-calendar-event"></i><span>List of Investor or Partner</span></a></li>
 							<li><a href="{% url 'base:project_create' %}"><i class="ti ti-calendar-event"></i><span>Create New Project</span></a></li>
 							<li><a href="{% url 'base:Project_work_inspection_details_all' %}"><i class="ti ti-calendar-event"></i><span>Inspection</span></a></li>
-							<li><a href="{% url 'base:register' %}"><i class="ti ti-calendar-event"></i><span>Add Staffs</span></a></li>
+							{% comment %} <li><a href="{% url 'base:register' %}"><i class="ti ti-calendar-event"></i><span>Add Staffs</span></a></li> {% endcomment %}
+							<li><a href="{% url 'base:register_engineer' %}"><i class="ti ti-calendar-event"></i><span>Add Engineer</span></a></li>
+							<li><a href="{% url 'base:register_department_engineer' %}"><i class="ti ti-calendar-event"></i><span>Add Department Engineer</span></a></li>
+							<li><a href="{% url 'base:register_site_supervisor' %}"><i class="ti ti-calendar-event"></i><span>Add Site Supervisor</span></a></li>
+							<li><a href="{% url 'base:register_site_worker_writer' %}"><i class="ti ti-calendar-event"></i><span>Add Site Worker Writer</span></a></li>
+							<li><a href="{% url 'base:register_supervisor' %}"><i class="ti ti-calendar-event"></i><span>Add Supervisor</span></a></li>
+							<li><a href="{% url 'base:register_founder' %}"><i class="ti ti-calendar-event"></i><span>Add Founder</span></a></li>
+							<li><a href="{% url 'base:register_owner' %}"><i class="ti ti-calendar-event"></i><span>Add Owner</span></a></li>
+							<li><a href="{% url 'base:register_chairman' %}"><i class="ti ti-calendar-event"></i><span>Add Chairman</span></a></li>
+							<li><a href="{% url 'base:register_ceo' %}"><i class="ti ti-calendar-event"></i><span>Add CEO</span></a></li>
+							<li><a href="{% url 'base:register_supplier' %}"><i class="ti ti-calendar-event"></i><span>Add Supplier</span></a></li>
+							<li><a href="{% url 'base:register_worker' %}"><i class="ti ti-calendar-event"></i><span>Add Worker</span></a></li>
+							<li><a href="{% url 'base:register_mestri' %}"><i class="ti ti-calendar-event"></i><span>Add Mestri</span></a></li>
+							<li><a href="{% url 'base:register_investor' %}"><i class="ti ti-calendar-event"></i><span>Add Investor</span></a></li>
+							<li><a href="{% url 'base:register_shop_owner' %}"><i class="ti ti-calendar-event"></i><span>Add Shop Owner</span></a></li>
+							<li><a href="{% url 'base:register_partner' %}"><i class="ti ti-calendar-event"></i><span>Add Partner</span></a></li>
+
+
+
 							<li><a href="{% url 'base:dashboard' %}"><i class="ti ti-calendar-event"></i><span>Bills</span></a></li>
 							{% endif %}
 							

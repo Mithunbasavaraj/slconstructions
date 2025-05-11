@@ -67,6 +67,7 @@
 <div class="col-xl-3">
     <div class="border-bottom text-center ">
    <h4>Punch In Photo</h4>
+   <h3>{{post.project.project_name}}</h3>
 	</div>
  {% if post.punch_in_photo %}
 <img src="{{post.punch_in_photo.url}}" class="img-fluid" alt="Img">
@@ -75,6 +76,7 @@
 <div class="col-xl-3">
     <div class="border-bottom text-center ">
    <h4>Lunch Start Photo</h4>
+   <h3>{{post.project_lunch_start.project_name}}</h3>
 	</div>
  {% if post.lunch_in_photo %}
 <img src="{{post.lunch_in_photo.url}}" class="img-fluid" alt="Img">
@@ -83,6 +85,7 @@
 <div class="col-xl-3">
     <div class="border-bottom text-center ">
    <h4>Lunch End Photo</h4>
+   <h3>{{post.project_lunch_end.project_name}}</h3>
 	</div>
  {% if post.lunch_out_photo %}
 <img src="{{post.lunch_out_photo.url}}" class="img-fluid" alt="Img">
@@ -91,6 +94,7 @@
 <div class="col-xl-3">
     <div class="border-bottom text-center ">
    <h4>Punch Out Photo</h4>
+   <h3>{{post.project_punch_out.project_name}}</h3>
 	</div>
  {% if post.punch_out_photo %}
 <img src="{{post.punch_out_photo.url}}" class="img-fluid" alt="Img">

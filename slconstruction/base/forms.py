@@ -1,14 +1,18 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
-from base.models import Profile,Project,Inventory,Inventory_use,stocks_in_Inventory,Project_daily_work_details,Project_work_inspection_details,Material_shifting,project_pre_plan,project_plan_files
+from base.models import Profile,Project,Inventory,Inventory_use,stocks_in_Inventory,Project_daily_work_details,Project_work_inspection_details,Material_shifting,project_pre_plan,project_plan_files,Material_shifting_received,Material_shifting_received
 from django import forms
 
 
 class RegisterUserForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ['username','first_name','last_name','email','password1','password2','designation']
+        fields = ['username','first_name','last_name','password1','password2','designation']
 
+class RegisterUserForm1(UserCreationForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['username','first_name','last_name','password1','password2']
 
 class ProfileForm(forms.ModelForm):
 	class Meta:
@@ -76,4 +80,12 @@ class project_plan_filesForm(forms.ModelForm):
 		fields =('__all__')
 		exclude = ('user','project_pre_plan',)
 
+class Material_shifting_receivedForm(forms.ModelForm):
+	class Meta:
+		model = Material_shifting_received
+		fields =('__all__')
+		exclude = ('user',)
 	
+
+
+

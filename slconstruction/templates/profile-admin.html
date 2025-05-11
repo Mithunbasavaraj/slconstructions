@@ -34,11 +34,11 @@
 							<div class="card-body">
 								<div class="mb-3">
 									<span class="d-block mb-1 fs-13">Phone Number</span>
-									<p class="text-gray-9">{{post.user.username}}</p>
+									<p class="text-gray-9">{{post.phone}}</p>
 								</div>
 								<div class="mb-3">
 									<span class="d-block mb-1 fs-13">Email Address</span>
-									<p class="text-gray-9">{{post.user.email}}</p>
+									<p class="text-gray-9">{{post.email}}</p>
 								</div>
 								<div class="mb-3">
 									<span class="d-block mb-1 fs-13">Gender </span>
@@ -60,6 +60,7 @@
 									<span class="d-block mb-1 fs-13">State</span>
 									<p class="text-gray-9">{{post.state}}</p>
 								</div>
+							
 
 
 
@@ -103,15 +104,43 @@
 									<p class="text-gray-9">{{post.address}}</p>
 								</div>
 								<div class="mb-3">
+									<span class="d-block mb-1 fs-13">Others</span>
+									<p class="text-gray-9">{{post.others}}</p>
+								</div>
+								<div class="mb-3">
 									<span class="d-block mb-1 fs-13">Last Login</span>
-									<p class="text-gray-9">{{post.user.last_login}} </p>
+									<p class="text-gray-9">{{user.last_login}} </p>
 								</div>
 								<div>
 									<span class="d-block mb-1 fs-13">Joined on</span>
-									<p class="text-gray-9">{{post.user.date_joined}}</p>
+									<p class="text-gray-9">{{user.date_joined}}</p>
 								</div>
 							</div>
 						</div>
+						
 					</div>
+					
 					</div>
+					<div class="row">
+					
+						{% if post.pan_image %}
+						<div class="mb-3 col-xl-4 ">
+						<span class="d-block mb-1 fs-13">Pan Image</span>
+										<img src="{{post.pan_image.url}}" alt="Img">
+									</div>
+									{% endif %}
+									{% if post.pan_image %}
+										<div class="mb-3 col-xl-4">
+									<span class="d-block mb-1 fs-13">Aadhar Image</span>
+										<img src="{{post.pan_image.url}}" alt="Img">
+									</div>		
+									{% endif %}
+									{% if post.shop_image %}
+								<div class="mb-3 col-xl-4">
+									<span class="d-block mb-1 fs-13">Shop Image</span>
+										<img src="{{post.shop_image.url}}" alt="Img">
+									</div>
+									{% endif %}
+								
+								</div>
 {% endblock content %}

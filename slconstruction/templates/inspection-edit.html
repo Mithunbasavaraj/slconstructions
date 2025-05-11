@@ -9,7 +9,7 @@
 								<div class="border-bottom mb-3 pb-3">
 									<h4>Details</h4>
 								</div>
-								<form method="POST" enctype="multipart/form-data">
+								<form method="POST" enctype="multipart/form-data" onsubmit="openLoader()">
 									{% csrf_token %}
 									<div class="border-bottom mb-3">
 										

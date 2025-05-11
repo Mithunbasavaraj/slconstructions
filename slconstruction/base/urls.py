@@ -66,5 +66,34 @@ urlpatterns = [
     path("attendance_details/<int:pk>",views.attendance_details, name="attendance_details"),
     path("admin_profile/<int:pk>",views.admin_profile, name="admin_profile"),
     path("bills/",views.bills, name="bills"),
-  
+    path("material_shifting_received/<int:pk>",views.material_shifting_received, name="material_shifting_received"),
+    path("material_shifting_received_list/<int:pk>",views.material_shifting_received_list, name="material_shifting_received_list"),
+    path("material_shifting_received_detail/<int:pk>",views.material_shifting_received_detail, name="material_shifting_received_detail"),
+    path("material_shifting_received_delete/<int:pk>/<int:p>",views.material_shifting_received_delete, name="material_shifting_received_delete"),
+    path("material_shifting_received_edit/<int:pk>/<int:p>",views.material_shifting_received_edit, name="material_shifting_received_edit"),
+    path("project_investor/<int:pk>",views.project_investor, name="project_investor"),
+    path("material_shifting_received_list_all/",views.material_shifting_received_list_all, name="material_shifting_received_list_all"), 
+    path("list_of_investor/",views.list_of_investor, name="list_of_investor"),
+    path("delete_investor/<int:pk>",views.delete_investor, name="delete_investor"),
+
+
+
+    path("register_engineer/",views.register_engineer, name="register_engineer"),
+    path("register_department_engineer/",views.register_department_engineer, name="register_department_engineer"),
+    path("register_supervisor/",views.register_supervisor, name="register_supervisor"),
+    path("register_site_supervisor/",views.register_site_supervisor, name="register_site_supervisor"),
+    path("register_site_worker_writer/",views.register_site_worker_writer, name="register_site_worker_writer"),
+    path("register_investor/",views.register_investor, name="register_investor"),
+    path("register_shop_owner/",views.register_shop_owner, name="register_shop_owner"),
+    path("register_partner/",views.register_partner, name="register_partner"),
+    path("register_founder/",views.register_founder, name="register_founder"),
+    path("register_owner/",views.register_owner, name="register_owner"),
+    path("register_chairman/",views.register_chairman, name="register_chairman"),
+    path("register_ceo/",views.register_ceo, name="register_ceo"),
+    path("register_supplier/",views.register_supplier, name="register_supplier"),
+    path("register_worker/",views.register_worker, name="register_worker"),
+    path("register_mestri/",views.register_mestri, name="register_mestri"),
+
+
+
 ]

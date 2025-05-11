@@ -26,9 +26,14 @@
               <a href="{% url 'base:inspection' post.pk %}" class="btn btn-primary btn-md me-2 mb-2" ><i class="ti ti-square-rounded-plus me-1"></i>Add Inspection Details</a>
               {% endif %}
              <a href="{% url 'base:daily_workers' post.pk %}" class="btn btn-secondary btn-md me-2 mb-2" ><i class="ti ti-square-rounded-plus me-1"></i>Add Worker Details</a>
-             <a href="{% url 'base:daily_workers_list' post.pk %}" class="btn btn-success btn-md mb-2" ><i class="ti ti-eye me-1"></i>View Worker Details</a>
+             <a href="{% url 'base:daily_workers_list' post.pk %}" class="btn btn-success btn-md me-2 mb-2" ><i class="ti ti-eye me-1"></i>View Worker Details</a>
+             {% if user.is_superuser %}
+               <a href="{% url 'base:project_investor' post.pk %}" class="btn btn-info btn-md me-2 mb-2" ><i class="ti ti-eye me-1"></i>Add Inventory or Partner</a> 
+             {% endif %}
+             
+            
 
-						</div>
+</div>
                         {% endif %}
 					</div>
 				</div>
@@ -83,7 +88,7 @@
           {% endif %}
 
             {% if not att.punch_in %}
-            <form action="{% url 'base:punch_in' post.pk %}" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'base:punch_in' post.pk %}" method="POST" enctype="multipart/form-data" onsubmit="openLoader()">
               {% csrf_token %}
               <div class="drag-upload-btn btn btn-primary py-2 w-100 disabled btn-submit">
                 <i class="fas fa-spinner fa-spin me-2"></i> Punch In
@@ -93,7 +98,7 @@
               <input type="hidden" name="lon" id="lon" >
             </form>
             {% elif not att.lunch_start %}
-                   <form action="{% url 'base:lunch_start' post.pk %}" method="POST" enctype="multipart/form-data">
+                   <form action="{% url 'base:lunch_start' post.pk %}" method="POST" enctype="multipart/form-data" onsubmit="openLoader()">
               {% csrf_token %}
               <div class="drag-upload-btn btn btn-primary py-2 w-100 disabled btn-submit">
                 <i class="fas fa-spinner fa-spin me-2"></i> Lunch Start
@@ -103,7 +108,7 @@
               <input type="hidden" name="lon" id="lon" >
             </form>
             {% elif not att.lunch_end %}
-                   <form action="{% url 'base:lunch_end' post.pk %}" method="POST" enctype="multipart/form-data">
+                   <form action="{% url 'base:lunch_end' post.pk %}" method="POST" enctype="multipart/form-data" onsubmit="openLoader()">
               {% csrf_token %}
               <div class="drag-upload-btn btn btn-primary py-2 w-100 disabled btn-submit">
                 <i class="fas fa-spinner fa-spin me-2"></i> Lunch End
@@ -113,7 +118,7 @@
               <input type="hidden" name="lon" id="lon" >
             </form>
             {% elif not att.punch_out %}
-                   <form action="{% url 'base:punch_out' post.pk %}" method="POST" enctype="multipart/form-data">
+                   <form action="{% url 'base:punch_out' post.pk %}" method="POST" enctype="multipart/form-data" onsubmit="openLoader()">
               {% csrf_token %}
               <div class="drag-upload-btn btn btn-primary py-2 w-100 disabled btn-submit">
                 <i class="fas fa-spinner fa-spin me-2"></i> Punch Out
@@ -210,7 +215,7 @@
 									</div>
 									<div class="ms-3">
 										
-										<h5>Suppler Inventory</h5>
+										<h5>Suppler Stocks</h5>
 									</div>
 								</div>
 								<div class="progress progress-xs mb-2">
@@ -234,7 +239,7 @@
 										<span class="d-flex align-items-center"><i class="ti ti-currency text-white fs-16"></i></span>
 									</div>
 									<div class="ms-3">
-										<h5>Use Inventory</h5>
+										<h5>Use Stocks</h5>
 									</div>
 								</div>
 								<div class="progress progress-xs mb-2">
@@ -294,6 +299,28 @@
 						</div>
 					</div>
           {% endif %}
+          <div class="col-xl-3 col-md-6">
+						<div class="card position-relative">
+							<div class="card-body">
+								<div class="d-flex align-items-center mb-3">
+									<div class="avatar avatar-md br-10 icon-rotate bg-info   flex-shrink-0">
+										<span class="d-flex align-items-center"><i class="ti ti-truck-delivery text-white fs-16"></i></span>
+									</div>
+									<div class="ms-3">
+										<h5>Material Shifting Received</h5>
+									</div>
+								</div>
+								<div class="progress progress-xs mb-2">
+									<div class="progress-bar bg-info" role="progressbar" style="width: 100%"></div>
+								</div>
+									<div class="btn-list mt-3 text-end">
+									<a href="{% url 'base:material_shifting_received' post.pk %}" class="btn btn-primary col-5">Add</a>
+									
+									<a href="{% url 'base:material_shifting_received_list' post.pk %}" class="btn btn-success col-5">View</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
                 
  </div>

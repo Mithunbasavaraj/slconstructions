@@ -2,10 +2,11 @@ import datetime
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterUserForm,ProfileForm,ProjectForm,Add_inventoryForm,Inventory_useForm,stocks_in_InventoryForm,Project_daily_work_detailsForm,Project_work_inspection_detailsForm,Material_shiftingForm,project_pre_planForm,project_plan_filesForm,Material_shifting_editForm
+from .forms import RegisterUserForm,ProfileForm,ProjectForm,Add_inventoryForm,Inventory_useForm,stocks_in_InventoryForm,Project_daily_work_detailsForm,Project_work_inspection_detailsForm,Material_shiftingForm,project_pre_planForm,project_plan_filesForm,Material_shifting_editForm,Material_shifting_receivedForm,RegisterUserForm1
 from django.contrib import messages
-from .models import Attendance,Profile,Project,Inventory,Inventory_use,stocks_in_Inventory,Project_daily_work_details,Project_work_inspection_details,Material_shifting,project_pre_plan,project_plan_files,User
+from .models import Attendance,Profile,Project,Inventory,Inventory_use,stocks_in_Inventory,Project_daily_work_details,Project_work_inspection_details,Material_shifting,project_pre_plan,project_plan_files,User,Project_investor,Material_shifting_received  
 from datetime import date
+from django.db.models import Q
 
 def home(request):
     return render(request, "index.html",)
@@ -23,16 +24,255 @@ def register(request):
   if form.is_valid():
    var = form.save()
    var.save()
-   Profile.objects.create(user=var)
+   p=Profile.objects.create(user=var)
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
    messages.success(request, "User Create Success")
 #    return redirect("base:login")
  else:
   form = RegisterUserForm()
  return render(request, "registration/signup.html", {"form": form})
 
+
+
+
+@login_required
+def register_engineer(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Engineer"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_department_engineer(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Department Engineer"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_supervisor(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Supervisor"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+
+@login_required
+def register_site_supervisor(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Site Supervisor"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_site_worker_writer(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Site Worker Writer"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_mestri(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Mestri"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_worker(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Worker"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_supplier(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Supplier"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+
+@login_required
+def register_founder(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Founder"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_owner(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Owner"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_chairman(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Chairman"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_ceo(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "CEO"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+@login_required
+def register_partner(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Partner"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+
+
+@login_required
+def register_shop_owner(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Shop Owner"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+
+@login_required
+def register_investor(request):
+ if request.method == "POST":
+  form = RegisterUserForm(request.POST or None)
+  if form.is_valid():
+   var = form.save(commit=False)
+   var.designation = "Investor"
+   var.save()
+   p=Profile.objects.create(user=var)
+   messages.success(request, "User Create Success")
+   return redirect('base:admin_update_profile', pk=p.id,u=var.id)
+ else:
+  form = RegisterUserForm()
+ return render(request, "registration/signup1.html", {"form": form})
+
+
+ 
+
 @login_required
 def dashboard(request):
-    post=Project.objects.all()
+    post=Project.objects.all().order_by('-id')
+    if request.user.designation == "Founder" or request.user.designation == "Investor":
+      post=Project_investor.objects.filter(user=request.user).order_by('-id')
     content={
       "post":post
     }
@@ -62,6 +302,7 @@ def project_create(request):
   form = ProjectForm(request.POST or None)
   if form.is_valid():
    form.save()
+   
    messages.success(request, "Project Created Success")
    return redirect("base:dashboard")
  return render(request, "create_project.html", {"form": form})
@@ -74,10 +315,8 @@ def project_details(request,pk):
  except Attendance.DoesNotExist:
     att=None  
  current_record = Project.objects.get(pk=pk)
- all_att=Attendance.objects.filter(user=request.user, project=current_record).order_by('-id')
- for x in all_att:
-  print(x.date)
- print(all_att)
+ all_att=Attendance.objects.filter(user=request.user).order_by('-id')
+
  context={
    "post":current_record,
    "att":att,
@@ -428,12 +667,108 @@ def material_shifting_edit(request,pk):
         return redirect('base:material_shifting_detail', pk=pk)
   return render(request, "meterialshifting-edit.html",{"form":form,})
 
+# material shifting received recived
+@login_required
+def material_shifting_received(request,pk):
+ current_record = Project.objects.get(pk=pk)
+ form=Material_shifting_receivedForm()
+ if request.method =='POST':
+     form = Material_shifting_receivedForm(request.POST, request.FILES)
+     if form.is_valid():
+      var = form.save(commit=False)
+      var.user = request.user
+      var.project = current_record
+      var.save()
+      messages.info(request, "Saved Successfully")
+      return redirect("base:project_details",pk=pk)
+     else:
+      messages.warning(request,'Please Enter valid input Something went wrong')
+ context = {'form': form}
+ return render(request, "meterialshifting-recived.html",context )
+
+#display material shifting received
+@login_required
+def material_shifting_received_list(request,pk):
+ current_record = Project.objects.get(pk=pk)
+ post=Material_shifting_received.objects.filter(project=current_record).order_by('-id')
+ context = {'post': post}
+ return render(request, "meterialshifting-recived-tabel.html", context)
+
+@login_required
+def material_shifting_received_list_all(request):
+ post=Material_shifting_received.objects.all().order_by('-id')
+ context = {'post': post}
+ return render(request, "meterialshifting-recived-tabel-all.html", context)
 
 
+#details of material shifting received
+@login_required
+def material_shifting_received_detail(request,pk):
+ current_record = Material_shifting_received.objects.get(pk=pk)
+ context = {'post': current_record}
+ return render(request, "meterialshifting-recived-details.html", context)
 
+ #delete material shifting received
+@login_required
+def material_shifting_received_delete(request,pk,p):
+ current_record = Material_shifting_received.objects.get(pk=pk)
+ current_record.delete()
+ messages.success(request, "Deleted Success")
+ return redirect("base:material_shifting_received_list",pk=p)
+
+
+@login_required
+def material_shifting_received_edit(request,pk,p):
+ current_record = Material_shifting_received.objects.get(pk=pk)
+ project_record = Project.objects.get(pk=p)
+ form = Material_shifting_receivedForm(instance=current_record)
+ if request.method=="POST":
+  form = Material_shifting_receivedForm(request.POST or None, request.FILES, instance=current_record) 
+  var = form.save(commit=False)
+  var.project = project_record
+  var.save()
+  messages.success(request, "Saved Success")
+  return redirect("base:material_shifting_received_list",pk=p)
+ return render(request, "meterialshifting-recived-edit.html",{"form":form,})
+
+# Project_investor
+@login_required
+def project_investor(request,pk):
+ post=Project.objects.get(pk=pk)
+ project_investor=Project_investor.objects.filter(project=post)
+ print(project_investor)
+ current_record = User.objects.filter(Q(designation__icontains="Investor") | Q(designation__icontains="Partner"))
+ print(current_record)
+ if request.method=="POST":
+  investor=request.POST.get("investor")
+  if Project_investor.objects.filter(user=User.objects.get(pk=investor),project=post).exists():
+   messages.warning(request, "Investor or partner already exists")
+   return redirect("base:project_details",pk=pk)
+  else:
+   project_investor=Project_investor(user=User.objects.get(pk=investor),project=post)
+   project_investor.save()
+   messages.success(request, "Saved Success")
+   return redirect("base:project_details",pk=pk)
+ return render(request, "add-investor.html",{"post":current_record,"project":post,"investor":project_investor})
+ 
+     
+
+#list of investor
+@login_required
+def list_of_investor(request):
+ project_investor=Project_investor.objects.all().order_by('-id')
+ return render(request, "investor-list.html",{"post":project_investor})
+
+
+#delete investor
+@login_required
+def delete_investor(request,pk):
+ current_record = Project_investor.objects.get(pk=pk)
+ current_record.delete()
+ messages.success(request, "Deleted Success")
+ return redirect("base:list_of_investor")
 
  #attendance
-
 @login_required
 def punch_in(request,pk):
    if request.method=="POST": 
@@ -450,6 +785,7 @@ def punch_in(request,pk):
 @login_required
 def lunch_start(request,pk):
    if request.method=="POST": 
+   
     image = request.FILES.get('image')
     lon=request.POST.get("lon")
     lat=request.POST.get("lat")
@@ -458,6 +794,8 @@ def lunch_start(request,pk):
     post.lunch_start_lat=lat
     post.lunch_start_lon=lon
     post.lunch_in_photo=image
+    project_record = Project.objects.get(pk=pk)
+    post.project_lunch_start=project_record
     post.save()
     messages.info(request, "Saved Successfully")
     return redirect("base:project_details" ,pk=pk)
@@ -474,6 +812,8 @@ def lunch_end(request,pk):
     post.lunch_end_lat=lat
     post.lunch_end_lon=lon
     post.lunch_out_photo=image
+    project_record = Project.objects.get(pk=pk)
+    post.project_lunch_end=project_record
     post.save()
     messages.info(request, "Saved Successfully")
  
@@ -491,6 +831,8 @@ def punch_out(request,pk):
     post.punch_out_lat=lat
     post.punch_out_lon=lon
     post.punch_out_photo=image
+    project_record = Project.objects.get(pk=pk)
+    post.project_punch_out=project_record
     post.save()
     messages.info(request, "Punch Out Successfully")
  
@@ -624,7 +966,8 @@ def admin_update_profile(request,pk,u):
 
 @login_required
 def bills(request):
-  pass
+  post=bills.objects.all().order_by('-id')
+  return render(request, "bills.html",{"post":post,})
 
 
 
