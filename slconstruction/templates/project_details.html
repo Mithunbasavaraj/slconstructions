@@ -21,12 +21,16 @@
 						</div>
                         {% if user.designation != "Worker" %}
                         <div class="d-flex align-items-center flex-wrap mb-1">
-                        {% if user.designation == "Department Engineer" or user.designation == "Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer" %}
+                        {% if user.designation == "Department Engineer" or user.designation == "Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer" or user.designation == "Founder" or user.designation == "Owner" or user.designation == "Chairman" or user.designation == "CEO" or user.designation == "Partner" or user.designation == "Investor" %}
+
 
               <a href="{% url 'base:inspection' post.pk %}" class="btn btn-primary btn-md me-2 mb-2" ><i class="ti ti-square-rounded-plus me-1"></i>Add Inspection Details</a>
               {% endif %}
+              {% if user.designation == " Site Worker Writer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Mestri" or user.is_superuser %}
+
              <a href="{% url 'base:daily_workers' post.pk %}" class="btn btn-secondary btn-md me-2 mb-2" ><i class="ti ti-square-rounded-plus me-1"></i>Add Worker Details</a>
              <a href="{% url 'base:daily_workers_list' post.pk %}" class="btn btn-success btn-md me-2 mb-2" ><i class="ti ti-eye me-1"></i>View Worker Details</a>
+             {% endif %}
              {% if user.is_superuser %}
                <a href="{% url 'base:project_investor' post.pk %}" class="btn btn-info btn-md me-2 mb-2" ><i class="ti ti-eye me-1"></i>Add Inventory or Partner</a> 
              {% endif %}
@@ -38,6 +42,9 @@
 					</div>
 				</div>
 				<!-- /Welcome Wrap -->
+
+        {% if user.designation == "Engineer" or user.designation == "Department Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Worker Writer" or user.designation == "Mestri" or user.designation == "Worker" %}
+
                   <div class="row">
     <div class="col-xl-4 d-flex">
       <div class="card flex-fill border-primary attendance-bg">
@@ -202,10 +209,12 @@
       </div>
     </div>
   </div>
+{% endif %}
 
-  {% if user.designation != "Worker" %}
+
 
   <div class="row">
+    {% if user.designation == "Supplier" or user.designation == "Investor" or user.designation == "Partner" or user.designation == "Founder" or user.designation == "Owner" or user.designation == "Chairman" or user.designation == "CEO" or user.designation == "Partner" or user.designation == "Investor" or user.is_superuser or user.designation == "Shop Owner" %}
 					<div class="col-xl-3 col-md-6">
 						<div  class="card position-relative">
 							<div class="card-body">
@@ -231,6 +240,8 @@
 							</div>
 						</div>
 					</div>
+          {% endif %}
+          {% if user.designation == "Department Engineer" or user.designation == "Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer" or user.designation == "Site Worker Writer" or user.designation == "Mestri" or user.designation == "Investor" or user.designation == "Partner" or user.designation == "Founder" or user.designation == "Owner" or user.designation == "Chairman" or user.designation == "CEO" or user.designation == "Partner" or user.designation == "Investor" or user.is_superuser %}
 					<div class="col-xl-3 col-md-6">
 						<div class="card position-relative">
 							<div class="card-body">
@@ -275,7 +286,30 @@
 							</div>
 						</div>
 					</div>
-          {% if user.designation == "Department Engineer" or user.designation == "Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer"  %}
+            <div class="col-xl-3 col-md-6">
+						<div class="card position-relative">
+							<div class="card-body">
+								<div class="d-flex align-items-center mb-3">
+									<div class="avatar avatar-md br-10 icon-rotate bg-info   flex-shrink-0">
+										<span class="d-flex align-items-center"><i class="ti ti-truck-delivery text-white fs-16"></i></span>
+									</div>
+									<div class="ms-3">
+										<h5>Material Shifting Received</h5>
+									</div>
+								</div>
+								<div class="progress progress-xs mb-2">
+									<div class="progress-bar bg-info" role="progressbar" style="width: 100%"></div>
+								</div>
+									<div class="btn-list mt-3 text-end">
+									<a href="{% url 'base:material_shifting_received' post.pk %}" class="btn btn-primary col-5">Add</a>
+									
+									<a href="{% url 'base:material_shifting_received_list' post.pk %}" class="btn btn-success col-5">View</a>
+								</div>
+							</div>
+						</div>
+					</div>
+          {% endif %}
+          {% if user.designation == "Department Engineer" or user.designation == "Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer" or user.designation == "Investor" or user.designation == "Partner" or user.designation == "Founder" or user.designation == "Owner" or user.designation == "Chairman" or user.designation == "CEO" or user.designation == "Partner" or user.designation == "Investor" or user.is_superuser %}
 					<div class="col-xl-3 col-md-6">
 						<div class="card position-relative">
 							<div class="card-body">
@@ -299,32 +333,11 @@
 						</div>
 					</div>
           {% endif %}
-          <div class="col-xl-3 col-md-6">
-						<div class="card position-relative">
-							<div class="card-body">
-								<div class="d-flex align-items-center mb-3">
-									<div class="avatar avatar-md br-10 icon-rotate bg-info   flex-shrink-0">
-										<span class="d-flex align-items-center"><i class="ti ti-truck-delivery text-white fs-16"></i></span>
-									</div>
-									<div class="ms-3">
-										<h5>Material Shifting Received</h5>
-									</div>
-								</div>
-								<div class="progress progress-xs mb-2">
-									<div class="progress-bar bg-info" role="progressbar" style="width: 100%"></div>
-								</div>
-									<div class="btn-list mt-3 text-end">
-									<a href="{% url 'base:material_shifting_received' post.pk %}" class="btn btn-primary col-5">Add</a>
-									
-									<a href="{% url 'base:material_shifting_received_list' post.pk %}" class="btn btn-success col-5">View</a>
-								</div>
-							</div>
-						</div>
-					</div>
+        
 				</div>
                 
  </div>
-{% endif %}
+
  <script>
    window.onload = function() {
      if ("geolocation" in navigator) {

@@ -203,13 +203,13 @@
 							<li><a href="{% url 'base:worker_list' %}"><i class="ti ti-calendar-event"></i><span>Worker Attendance</span></a></li>
 							{% endif %}
 							
-							{% if user.designation != "Worker" %}
+							{% if user.designation == "Department Engineer" or user.designation == "Engineer" or user.designation == "Supervisor" or user.designation == "Site Supervisor" or user.designation == "Site Engineer" or user.designation == "Site Worker Writer" or user.is_superuser %}
 							<li><a href="{% url 'base:project_plan' %}"><i class="ti ti-calendar-event"></i><span>Create Pre Project Plan</span></a></li>
 							<li><a href="{% url 'base:project_plan_list' %}"><i class="ti ti-calendar-event"></i><span>View Pre Project Plan</span></a></li>
 							<li><a href="{% url 'base:material_shifting' %}"><i class="ti ti-calendar-event"></i><span>Material Shifting</span></a></li>
-							<li><a href="{% url 'base:material_shifting_received_list_all' %}"><i class="ti ti-calendar-event"></i><span>Material Shifting Received</span></a></li>
 							{% endif %}
 							{% if  user.is_superuser %}
+							<li><a href="{% url 'base:material_shifting_received_list_all' %}"><i class="ti ti-calendar-event"></i><span>Material Shifting Received</span></a></li>
 							<li><a href="{% url 'base:material_shifting_list' %}"><i class="ti ti-calendar-event"></i><span>Material Shifting Details</span></a></li>
 							<li><a href="{% url 'base:add_inventory_all' %}"><i class="ti ti-calendar-event"></i><span>Suppler Stock</span></a></li>
 							<li><a href="{% url 'base:used_inventory_all' %}"><i class="ti ti-calendar-event"></i><span>Used Stock</span></a></li>
